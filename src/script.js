@@ -67,3 +67,34 @@ const createKeyboardBlocks = () => {
 /* Get keyboard with language which we need */
 setCashLanguage();
 createKeyboardBlocks();
+
+/* Get current keyboard  */
+let keys = keyboard.querySelectorAll('div');
+
+/* Change on English Keyboard func */
+const changeLanguage = () => {
+  const letters = keyboard.querySelectorAll('div');
+  if (currentLanguage === 'ru') {
+    currentLanguage = 'eng';
+    letters.forEach((elem) => {
+      const datacode = elem.getAttribute('data-code');
+      dataKeyLetters.forEach((cell) => {
+        if (cell.code === datacode) {
+          elem.innerHTML = cell.EN.toLowerCase();
+        }
+      });
+    });
+  } else if (currentLanguage === 'eng') {
+    currentLanguage = 'ru';
+    letters.forEach((elem) => {
+      const datacode = elem.getAttribute('data-code');
+      dataKeyLetters.forEach((cell) => {
+        if (cell.code === datacode) {
+          elem.innerHTML = cell.RU.toLowerCase();
+        }
+      });
+    });
+  }
+  keys = keyboard.querySelectorAll('div');
+  localStorage.setItem('lang', currentLanguage);
+};
