@@ -98,3 +98,43 @@ const changeLanguage = () => {
   keys = keyboard.querySelectorAll('div');
   localStorage.setItem('lang', currentLanguage);
 };
+
+/* Change on numbers keyboard */
+const changeNumbers = () => {
+  const letters = keyboard.querySelectorAll('div');
+  letters.forEach((elem) => {
+    const datacode = elem.getAttribute('data-code');
+    dataKeyNumbers.forEach((cell) => {
+      if (cell.code === datacode) {
+        elem.innerHTML = cell.RU;
+      }
+    });
+  });
+};
+
+/* Change on symbols keyboard */
+const changeSymbols = () => {
+  flag = true;
+  const letters = keyboard.querySelectorAll('div');
+  letters.forEach((elem) => {
+    const datacode = elem.getAttribute('data-code');
+    dataKeyNumbers.forEach((cell) => {
+      if (cell.code === datacode) {
+        elem.innerHTML = cell.symbol;
+      }
+    });
+  });
+};
+
+/* key down CapsLock key */
+const changeCaps = () => {
+  const letters = keyboard.querySelectorAll('div');
+  letters.forEach((elem) => {
+    const datacode = elem.getAttribute('data-code');
+    if (!notSymbol.includes(datacode)) {
+      elem.classList.toggle('caps-lock');
+    }
+  });
+  keys = keyboard.querySelectorAll('div');
+  flagCaps = false;
+};
