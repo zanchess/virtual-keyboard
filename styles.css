@@ -1,0 +1,371 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+
+body{
+	background-color: #eef0f6;
+	font-family: 'Montserrat', sans-serif;
+	user-select: none;
+}
+
+.keyboard{
+	margin: 40px auto;
+	width: 720px;
+	display: grid;
+	grid-template-columns: repeat(15, 40px);
+	grid-template-rows: repeat(5, 40px);
+	gap: 5px;
+	grid-template-areas:  "tilde one two three four five six seven eight nine zero minus plus back back back"                         
+												"tab tab Q W E R T Y U I O P sq1 sq2 tr del"                         
+												"cap cap A S D F G H J K L sem mark ent ent ent"                         
+												"sh sh sh sll Z X C V B N M quo p slr up sh1"                         
+												"ctrl1 ctrl1 win alt1 sp sp sp sp sp sp sp alt2 ctrl2 l d r";
+	background-color: #cfdaec;
+	padding: 10px;
+	border-radius: 7px;
+	-webkit-border-radius: 7px;
+	-moz-border-radius: 7px;
+	-ms-border-radius: 7px;
+	-o-border-radius: 7px;
+	border: 1px solid #788da0;
+	-webkit-box-shadow: -9px -7px 17px -1px rgba(70,94,114,0.34); 
+	box-shadow: -9px -7px 17px -1px rgba(70,94,114,0.34);
+}
+
+h4{
+	text-align: center;
+}
+
+
+.keyboard > div{
+	position: relative;
+	background: #9cb9d1;
+	text-align: center;
+	align-content: center;
+	padding-top: 10px;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-ms-border-radius: 3px;
+	-o-border-radius: 3px;
+	cursor: pointer;
+	user-select: none;
+	font-size: 15px;
+	border-left: 2px solid #465e72;
+	border-top: 2px solid #465e72;
+	-webkit-box-shadow: inset 17px -12px 33px -4px rgba(58,80,98,0.36);
+	box-shadow: inset 17px -12px 33px -4px rgba(58,80,98,0.36);
+	transition: background 0.2s ease ;
+}
+
+.keyboard > div:hover{
+	background-color: #bec6d3;
+}
+
+.keyboard  > .click{
+	background-color: #354a57;
+	color: #eef0f6;
+	transition: all 0.17s ease;
+	border-left: 0;
+	border-top: 0;
+}
+
+h1{
+	text-align: center;
+}
+
+.caps-lock{
+	text-transform: uppercase;
+}
+
+textarea{
+	display: block;
+	min-width: 50%;
+	max-width: 50%;
+	min-height: 200px;
+	max-height: 250px;
+	margin: 20px auto;
+	border: 3px solid  #9cb9d1;
+	outline: none;
+	border-radius: 10px;
+	font-family: 'Montserrat', sans-serif;
+	background-color: #cfdaec;
+	font-size: 17px;
+	padding: 10px;
+}
+
+.keyboard > .shift_2{
+	padding-top: 15px;
+	font-size: 10px;
+}
+
+.ctrl_1{
+	grid-area: ctrl1;
+}
+.window{
+	grid-area: win;
+}
+
+.alt_1{
+	grid-area: alt1; 
+}
+
+.space{
+	grid-area: sp;  
+}
+
+.alt_2{
+	grid-area: alt2; 
+}
+
+.ctrl_2{
+	grid-area: ctrl2;
+}
+
+.left{
+	grid-area: l;
+}
+
+.down{
+	grid-area: d;
+}
+
+.right{
+	grid-area: r;
+}
+
+.shift_1{
+	grid-area: sh;
+}
+
+.slash_l{
+	grid-area: sll;
+}
+
+.letter_Z{
+	grid-area: Z;
+}
+
+.letter_Z{
+	grid-area: Z;
+}
+
+.letter_X{
+	grid-area: X;
+}
+
+.letter_C{
+	grid-area: C;
+}
+
+.letter_V{
+	grid-area: V;
+}
+
+.letter_B{
+	grid-area: B;
+}
+
+.letter_N{
+	grid-area: N;
+}
+
+.letter_M{
+	grid-area: M;
+}
+
+.comma{
+	grid-area: quo;
+}
+
+.point{
+	grid-area: p;
+}
+
+.slash_r{
+	grid-area: slr;
+}
+
+.up{
+	grid-area: up;
+}
+
+.shift_2{
+	grid-area: sh1;
+	font-size: 11px;
+} 
+
+.tilde{
+	grid-area: tilde;
+	
+}
+
+.one{
+	grid-area: one;
+	
+}
+
+.two{
+	grid-area: two;
+}
+
+.three{
+	grid-area: three;
+}
+
+.four{
+	grid-area: four;
+}
+
+.five{
+	grid-area: five;
+}
+
+.six{
+	grid-area: six;
+}
+
+.seven{
+	grid-area: seven;
+}
+
+.eight{
+	grid-area: eight;
+}
+
+.nine{
+	grid-area: nine;
+}
+
+.zero{
+	grid-area: zero;
+}
+
+.minus{
+	grid-area: minus;
+}
+
+.plus{
+	grid-area: plus;
+}
+
+.back{
+	grid-area: back;
+}
+
+.tab{
+	grid-area: tab;
+	background-color: antiquewhite;
+}
+
+.letter_Q{
+	grid-area: Q;
+}
+
+.letter_W{
+	grid-area: W;
+}
+
+.letter_E{
+	grid-area: E;
+}
+
+.letter_R{
+	grid-area: R;
+}
+
+.letter_T{
+	grid-area: T;
+}
+
+.letter_Y{
+	grid-area: Y;
+}
+
+.letter_U{
+	grid-area: U;
+}
+
+.letter_I{
+	grid-area: I;
+}
+
+.letter_O{
+	grid-area: O;
+}
+
+.letter_P{
+	grid-area: P;
+}
+
+.bracket__sq_l{
+	grid-area: sq1;
+}
+
+.bracket__sq_r{
+	grid-area: sq2;
+}
+
+.trait{
+	grid-area: tr; 
+}
+
+.del{
+	grid-area: del;   
+}
+
+.caps{
+	grid-area: cap;   
+}
+
+.letter_A{
+	grid-area: A;
+}
+
+.letter_S{
+	grid-area: S;
+}
+
+.letter_D{
+	grid-area: D;
+}
+
+.letter_F{
+	grid-area: F;
+}
+
+.letter_G{
+	grid-area: G;
+}
+
+.letter_H{
+	grid-area: H;
+}
+
+.letter_J{
+	grid-area: J;
+}
+
+.letter_K{
+	grid-area: K;
+}
+
+.letter_L{
+	grid-area: L;
+}
+
+.semicolon{
+	grid-area: sem;
+}
+
+.mark{
+	grid-area: mark;
+}
+
+.enter{
+	grid-area: ent;
+}
+
+
+
