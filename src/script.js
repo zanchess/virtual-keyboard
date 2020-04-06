@@ -138,3 +138,56 @@ const changeCaps = () => {
   keys = keyboard.querySelectorAll('div');
   flagCaps = false;
 };
+
+/* MOUSE */
+/* handler functions for mouse events */
+const mouseDown = (e) => {
+  const dataCode = e.target.getAttribute('data-code');
+  e.target.classList.add('click');
+  const textArray = textarea.value.split('');
+  const positionOfEntry = textarea.selectionStart;
+
+  if (!e.target.classList.contains('keyboard') && (!notSymbol.includes(dataCode)) && e.target.classList.contains('caps-lock')) {
+    textArray.splice(positionOfEntry, 0, e.target.innerHTML.toUpperCase());
+    textarea.value = textArray.join('');
+    textarea.setSelectionRange(positionOfEntry + 1, positionOfEntry + 1);
+  }
+  if (!e.target.classList.contains('keyboard') && (!notSymbol.includes(dataCode)) && !e.target.classList.contains('caps-lock')) {
+    textArray.splice(positionOfEntry, 0, e.target.innerHTML.toLowerCase());
+    textarea.value = textArray.join('');
+    textarea.setSelectionRange(positionOfEntry + 1, positionOfEntry + 1);
+  }
+  if (dataCode === 'Tab') {
+    textArray.splice(positionOfEntry, 0, '    ');
+    textarea.value = textArray.join('');
+    textarea.setSelectionRange(positionOfEntry + 4, positionOfEntry + 4);
+  }
+  if (dataCode === 'Enter') {
+    textArray.splice(positionOfEntry, 0, '\n');
+    textarea.value = textArray.join('');
+    textarea.setSelectionRange(positionOfEntry + 1, positionOfEntry + 1);
+  }
+  if (dataCode === 'Backspace') {
+    const str = textarea.value;
+    textarea.value = str.substring(0, str.length - 1);
+  }
+  if (dataCode === 'CapsLock') {
+    changeCaps();
+  }
+  if (dataCode === 'Delete') {
+    textArray.splice(positionOfEntry, 1);
+    textarea.value = textArray.join('');
+    textarea.setSelectionRange(positionOfEntry, positionOfEntry);
+  }
+  textarea.focus();
+  textarea.addEventListener('blur', () => {
+    textarea.focus();
+  });
+};
+
+/* mouse up handler */
+const endClick = (e) => {
+  if (!e.target.classList.contains('keyboard')) {
+    e.target.classList.remove('click');
+  }
+};
