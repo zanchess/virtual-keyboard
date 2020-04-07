@@ -114,7 +114,6 @@ const changeNumbers = () => {
 
 /* Change on symbols keyboard */
 const changeSymbols = () => {
-  flag = true;
   const letters = keyboard.querySelectorAll('div');
   letters.forEach((elem) => {
     const datacode = elem.getAttribute('data-code');
@@ -206,10 +205,14 @@ const keyDown = (e) => {
     if (dataCode === e.code) {
       elem.classList.add('click');
       if (!notSymbol.includes(e.code) && (!letter.classList.contains('caps-lock'))) {
+        textarea.focus();
+        e.preventDefault();
         textArray.splice(positionOfEntry, 0, letter.innerHTML.toLowerCase());
         textarea.value = textArray.join('');
         textarea.setSelectionRange(positionOfEntry + 1, positionOfEntry + 1);
       } else if (!notSymbol.includes(e.code) && (letter.classList.contains('caps-lock'))) {
+        textarea.focus();
+        e.preventDefault();
         textArray.splice(positionOfEntry, 0, letter.innerHTML.toUpperCase());
         textarea.value = textArray.join('');
         textarea.setSelectionRange(positionOfEntry + 1, positionOfEntry + 1);
@@ -257,8 +260,9 @@ const keyDown = (e) => {
         flagShift = true;
       }
       if (flag && dataCode === 'AltLeft') {
+        e.preventDefault();
         changeLanguage();
-        flag = true;
+        flag = false;
       }
     }
   });
@@ -281,10 +285,14 @@ const keyUp = (e) => {
     if (dataCode === 'CapsLock') {
       flagCaps = true;
     }
+    if (dataCode === 'ControlLeft') {
+      flag = false;
+    }
   });
 };
 
-/* add handler for mousedoun */
+
+/* add handler for mousedown */
 keyboard.addEventListener('mousedown', mouseDown);
 
 /* add handlers for mousedown and mouseout */
