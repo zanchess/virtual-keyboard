@@ -21,15 +21,16 @@ keyboard.classList.add('keyboard');
 description.classList.add('descr');
 taskName.innerHTML = 'Virtual Keyboard';
 description.innerHTML = ' OS: Windows. Change language: CTRL + Alt <br> Write symbol: SHIFT + key. Upper Case: CapsLock';
-mainPage.appendChild(taskName);
-mainPage.appendChild(container);
-container.appendChild(textarea);
-container.appendChild(keyboard);
-container.appendChild(description);
+
+const fragment = document.createDocumentFragment();
+fragment.append(taskName, container);
+
+container.append(textarea, keyboard, description);
+mainPage.append(fragment);
 /* textarea.setAttribute('readonly', 'disabled'); */
 
 /* parse data keyboard */
-const setCashLanguage = () => {
+const setLanguage = () => {
   const cashLanguage = localStorage.getItem('lang');
   if (!cashLanguage || cashLanguage === ru) {
     currentLanguage = ru;
@@ -41,10 +42,15 @@ const setCashLanguage = () => {
 /* create keys for keyboard */
 const createKeys = (element) => {
   const key = document.createElement('div');
-  if (currentLanguage === ru) {
-    key.innerHTML = element.RU.toLocaleLowerCase();
-  } else if (currentLanguage === eng) {
-    key.innerHTML = element.EN.toLocaleLowerCase();
+  switch (currentLanguage) {
+    case ru:
+      key.innerHTML = element.RU.toLocaleLowerCase();
+      break;
+    case eng:
+      key.innerHTML = element.EN.toLocaleLowerCase();
+      break;
+    default:
+      break;
   }
   key.classList.add(element.key);
   key.setAttribute('data-code', element.code);
@@ -66,7 +72,7 @@ const createKeyboardBlocks = () => {
 };
 
 /* Get keyboard with language which we need */
-setCashLanguage();
+setLanguage();
 createKeyboardBlocks();
 
 /* Get current keyboard  */
