@@ -1,9 +1,10 @@
 import {
   dataKeyLetters, notSymbol, dataKeyNumbers, dataKeyFunc,
 } from './data.js';
+import { ru, eng } from './constants.js';
 
-let currentLanguage = 'ru';
-let flag = false;
+let currentLanguage = ru;
+let flagCtrl = false;
 let flagShift = false;
 let flagCaps = true;
 
@@ -30,19 +31,19 @@ container.appendChild(description);
 /* parse data keyboard */
 const setCashLanguage = () => {
   const cashLanguage = localStorage.getItem('lang');
-  if (!cashLanguage || cashLanguage === 'ru') {
-    currentLanguage = 'ru';
-  } else if (cashLanguage === 'eng') {
-    currentLanguage = 'eng';
+  if (!cashLanguage || cashLanguage === ru) {
+    currentLanguage = ru;
+  } else if (cashLanguage === eng) {
+    currentLanguage = eng;
   }
 };
 
 /* create keys for keyboard */
 const createKeys = (element) => {
   const key = document.createElement('div');
-  if (currentLanguage === 'ru') {
+  if (currentLanguage === ru) {
     key.innerHTML = element.RU.toLocaleLowerCase();
-  } else if (currentLanguage === 'eng') {
+  } else if (currentLanguage === eng) {
     key.innerHTML = element.EN.toLocaleLowerCase();
   }
   key.classList.add(element.key);
@@ -61,7 +62,7 @@ const createKeyboardBlocks = () => {
   dataKeyFunc.forEach((elem) => {
     createKeys(elem);
   });
-  localStorage.setItem('currentLanguage', 'ru');
+  localStorage.setItem('currentLanguage', ru);
 };
 
 /* Get keyboard with language which we need */
@@ -74,8 +75,8 @@ let keys = keyboard.querySelectorAll('div');
 /* Change on English Keyboard func */
 const changeLanguage = () => {
   const letters = keyboard.querySelectorAll('div');
-  if (currentLanguage === 'ru') {
-    currentLanguage = 'eng';
+  if (currentLanguage === ru) {
+    currentLanguage = eng;
     letters.forEach((elem) => {
       const datacode = elem.getAttribute('data-code');
       dataKeyLetters.forEach((cell) => {
@@ -84,8 +85,8 @@ const changeLanguage = () => {
         }
       });
     });
-  } else if (currentLanguage === 'eng') {
-    currentLanguage = 'ru';
+  } else if (currentLanguage === eng) {
+    currentLanguage = ru;
     letters.forEach((elem) => {
       const datacode = elem.getAttribute('data-code');
       dataKeyLetters.forEach((cell) => {
@@ -135,7 +136,6 @@ const changeCaps = () => {
     }
   });
   keys = keyboard.querySelectorAll('div');
-  flagCaps = false;
 };
 
 /* MOUSE */
@@ -234,7 +234,7 @@ const keyDown = (e) => {
         textarea.setSelectionRange(positionOfEntry + 1, positionOfEntry + 1);
       }
       if (dataCode === 'ControlLeft') {
-        flag = true;
+        flagCtrl = true;
       }
       /*  if (dataCode === 'Space') {
         textArray.splice(positionOfEntry, 0, ' ');
@@ -259,10 +259,10 @@ const keyDown = (e) => {
         }
         flagShift = true;
       }
-      if (flag && dataCode === 'AltLeft') {
+      if (flagCtrl && dataCode === 'AltLeft') {
         e.preventDefault();
         changeLanguage();
-        flag = false;
+        flagCtrl = false;
       }
     }
   });
@@ -286,7 +286,7 @@ const keyUp = (e) => {
       flagCaps = true;
     }
     if (dataCode === 'ControlLeft') {
-      flag = false;
+      flagCtrl = false;
     }
   });
 };
