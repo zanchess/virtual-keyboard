@@ -68,7 +68,6 @@ const createKeyboardBlocks = () => {
   dataKeyFunc.forEach((elem) => {
     createKeys(elem);
   });
-  localStorage.setItem('currentLanguage', ru);
 };
 
 /* Get keyboard with language which we need */
@@ -91,7 +90,7 @@ const changeLanguage = () => {
         }
       });
     });
-  } else if (currentLanguage === eng) {
+  } else {
     currentLanguage = ru;
     letters.forEach((elem) => {
       const datacode = elem.getAttribute('data-code');
